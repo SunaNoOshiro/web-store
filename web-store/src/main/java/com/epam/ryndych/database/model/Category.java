@@ -3,7 +3,7 @@ package com.epam.ryndych.database.model;
 public class Category {
 	private int id;
 	private String name;
-	private Category superCategoty = null;
+	private String superCategoty = null;
 	
 	public int getId() {
 		return id;
@@ -21,11 +21,11 @@ public class Category {
 		this.name = name;
 	}
 	
-	public Category getSuperCategoty() {
+	public String getSuperCategoty() {
 		return superCategoty;
 	}
 	
-	public void setSuperCategoty(Category superCategoty) {
+	public void setSuperCategoty(String superCategoty) {
 		this.superCategoty = superCategoty;
 	}
 	

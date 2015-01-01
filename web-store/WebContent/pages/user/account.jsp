@@ -7,11 +7,11 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Cart | E-Shopper</title>
-	<jsp:include page="links.jsp" />
-	<jsp:include page="scripts.jsp" />
+	<jsp:include page="../links.jsp" />
+	<jsp:include page="../scripts.jsp" />
 </head>
 <body>
-	<jsp:include page="header.jsp" />
-	<jsp:include page="change_profile.jsp"></jsp:include>
+	<jsp:include page="../header.jsp" />
+	<jsp:include page="../change_profile.jsp"></jsp:include>
 </body>
 </html>

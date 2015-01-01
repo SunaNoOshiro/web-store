@@ -34,10 +34,10 @@ public class AccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(request.getSession().getAttribute("userPermission")!=null){
 			if(request.getSession().getAttribute("userPermission").equals("USER")){
-				request.getRequestDispatcher("pages/account.jsp").forward(request, response);
+				request.getRequestDispatcher("pages/user/account.jsp").forward(request, response);
 			}
 			else if(request.getSession().getAttribute("userPermission").equals("ADMIN")){
-				request.getRequestDispatcher("pages/admin_account.jsp").forward(request, response);
+				request.getRequestDispatcher("pages/admin/admin_account.jsp").forward(request, response);
 			}
 		}
 		else request.getRequestDispatcher("home").forward(request, response);		

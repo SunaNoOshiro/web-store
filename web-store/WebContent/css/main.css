@@ -1473,7 +1473,7 @@ color: #696763;
   width: 100%;
 }
 
-#form .item_add input, #form .category_add input, #form .discription_add input {
+#form .item_add input, #form .category_add input, #form  .description_add input {
   background: #F0F0E9;
   border: medium none;
   color: #696763;
@@ -1488,7 +1488,7 @@ color: #696763;
   width: 100%;
 }
 
-#form .item_add button, #form .category_add button, #form .discription_add button{
+#form .item_add button, #form .category_add button, #form  .description_add button{
   background: #FE980F;
   border: medium none;
   border-radius: 0;
@@ -1498,7 +1498,7 @@ color: #696763;
   padding: 6px 25px;
 }
 
-#form .item_add select, #form .category_add select, #form .description_add select {
+#form .item_add select, #form .category_add select, #form .description_add  select {
   background: #F0F0E9;
   border: medium none;
   color: #696763;

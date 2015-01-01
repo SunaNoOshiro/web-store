@@ -22,7 +22,7 @@ public class ItemService {
 		return ItemDAO.deleteItemByID(id);
 	}
 	
-	public static boolean inserteItem(Item newItem){
+	public static boolean insertItem(Item newItem){
 		return ItemDAO.insertItem(newItem);
 	}
 }

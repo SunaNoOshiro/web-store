@@ -100,17 +100,22 @@ public class ItemDAO {
 	public static boolean insertItem(Item newItem) {
 		PreparedStatement pStatement = wbConnection.prepareStatement(INSERT_ITEM);
 		try {
+			
 			pStatement.setInt(1, newItem.getCategory().getId());
 			pStatement.setString(2, newItem.getManufacturer());
 			pStatement.setFloat(3, newItem.getPrice());
 			pStatement.setString(4, newItem.getModel());
 			pStatement.setInt(5, newItem.getWarranty());
 
-			pStatement.executeUpdate();
+			int i =pStatement.executeUpdate();
+			System.out.println(i);
+			if(i>0)
+				return true;
+			else
+				return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
 	}
 }

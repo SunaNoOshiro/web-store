@@ -32,7 +32,7 @@ public class WebStoreConnectionPool {
 //			connection = connectionPool.getConnection();
 			
 			if (connection != null){
-				System.out.println("Connection successful!");				
+				//System.out.println("Connection successful!");				
 			}
 		} catch (ClassNotFoundException e) {
 			System.out.println("MySql Driver not found");

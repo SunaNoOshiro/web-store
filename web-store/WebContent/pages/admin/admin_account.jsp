@@ -7,15 +7,17 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Cart | E-Shopper</title>
-	<jsp:include page="links.jsp" />
-	<jsp:include page="scripts.jsp" />
+	<jsp:include page="../links.jsp" />
+	<jsp:include page="../scripts.jsp" />
 		<style type="text/css">
+		
 		#container-toogle {
-			width:	1300px;
-			height: 700px;
+			width:	100%;
+			height: 100%;
+			min-height:900px;			
 			position: relative;
 			overflow: hidden;
-			background: #FE980F;
+			background-color: #F0F0E9;
 		}
 		#container-toogle .col-sm-3, #container-toogle .col-sm-5 {
 			background: #FFF;
@@ -23,7 +25,10 @@
 		}
 		#container-toogle .col-sm-4{
 			background: #FFF;
-			border-top: solid 1px  #F1F1E0;
+			border: solid 1px  #F1F1E0;
+		}
+		#container-toogle .col-sm-5 div{
+			background: #FFF;
 		}
 		#container-toogle button{	  
 			border: medium none;
@@ -32,7 +37,12 @@
 			font-family: 'Roboto', sans-serif;
 			padding: 6px 25px;
 		}
-		
+		#container-toogle .col-sm-5 input:hover{
+		 	color: #FDB45E;
+		 	background: #FFF;
+		 	 box-shadow: inset 0px 0px 5px rgba(0,0,0,0.5);
+		 	
+		}
 		#container-toogle button:hover{
 		 	color: #FDB45E;
 		 	background: #FFF;
@@ -41,8 +51,9 @@
 		#right, #left {
 			-webkit-transition: all 1s ease;
 			-moz-transition: all 1s ease;
-			width:	1300px;
-			height: 700px;
+			width:		100%;
+			min-height:900px;	
+			height: 100%;;
 			position: absolute;
 			padding: 10px;
 		}
@@ -62,22 +73,22 @@
 			-moz-transform: translate(-1300px, 0);
 		}
 	</style>
-</head>
-<body>
-	<jsp:include page="header.jsp" />
 	<script type="text/javascript">
 	$( document ).ready(function() {
 	    $("#bleft, #bright").click(function(){
 		    $("#left, #right").toggleClass("transitioned");
 		  });
-	});
-	
+	});	
 	</script>
+</head>
+<body>
+	<jsp:include page="../header.jsp" />
+	
 	
 	<div id="container-toogle">
 		<div id="right">			
 			<button id="bright">Add Items etc.</button>
-			<jsp:include page="item_adding.jsp" />
+			<jsp:include page="admin_list.jsp" />
 		</div>
 		<div id="left">			
 			<button id="bleft">Users</button>

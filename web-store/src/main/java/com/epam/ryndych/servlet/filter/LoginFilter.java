@@ -56,13 +56,14 @@ public class LoginFilter implements Filter {
 						|| uri.endsWith("user") || uri.endsWith("user")) {
 					chain.doFilter(request, response);
 				} else {
-					request.getRequestDispatcher("/pages/errors/notHavePermission.jsp").forward(request, response);
-				}
+					request.getRequestDispatcher("/pages/errors/mustToLogin.jsp").forward(request, response);
+					}
 			} 
 			//admin
 			else if (session.getAttribute("userPermission").equals("ADMIN")) {
 				if ((uri.endsWith("account") || uri.endsWith("userlist") || uri.endsWith("login") 
-						|| uri.endsWith("home") || uri.endsWith("/"))) {
+						|| uri.endsWith("home") || uri.endsWith("/") || uri.endsWith("admin/category")
+						||  uri.endsWith("/admin/item"))) {
 					chain.doFilter(request, response);
 				} else {
 					request.getRequestDispatcher("/pages/errors/404.jsp").forward(request, response);
@@ -75,12 +76,10 @@ public class LoginFilter implements Filter {
 						|| uri.endsWith("account") || uri.endsWith("shop")
 						|| uri.endsWith("login") || uri.endsWith("home") || uri.endsWith("/"))) {
 					chain.doFilter(request, response);
-				} else if(uri.endsWith("userlist")) {
-					request.getRequestDispatcher("/pages/errors/notHavePermission.jsp").forward(request, response);
-				}
-				else{
-					request.getRequestDispatcher("/pages/errors/mustToLogin.jsp").forward(request, response);
+				} else {
+					request.getRequestDispatcher("/pages/errors/404.jsp").forward(request, response);
 					
+					//request.getRequestDispatcher("/pages/errors/notHavePermission.jsp").forward(request, response);
 				}
 
 			} else {

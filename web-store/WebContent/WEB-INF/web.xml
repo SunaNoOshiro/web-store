@@ -40,7 +40,38 @@
     <servlet-name>validation</servlet-name>
     <servlet-class>com.epam.ryndych.servlet.ValidateServlet</servlet-class>
   </servlet>
-  
+  <servlet>
+	  <servlet-name>item</servlet-name>
+	    <servlet-class>com.epam.ryndych.servlet.ItemServlet</servlet-class>
+	  </servlet>
+  <servlet>
+    <servlet-name>photo</servlet-name>
+    <servlet-class>com.epam.ryndych.servlet.PhotoServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>description</servlet-name>
+    <servlet-class>com.epam.ryndych.servlet.DescriptionServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>category</servlet-name>
+    <servlet-class>com.epam.ryndych.servlet.CategoryServlet</servlet-class>
+  </servlet>
+   <servlet-mapping>
+    <servlet-name>photo</servlet-name>
+    <url-pattern>/admin/photo</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>item</servlet-name>
+    <url-pattern>/admin/item</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>description</servlet-name>
+    <url-pattern>/admin/description</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>category</servlet-name>
+    <url-pattern>/admin/category</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>userlist</servlet-name>
     <url-pattern>/userlist</url-pattern>
@@ -77,46 +108,36 @@
     <servlet-name>validation</servlet-name>
     <url-pattern>/validation</url-pattern>
   </servlet-mapping>
-  
   <filter>
     <filter-name>loginFilter</filter-name>
     <filter-class>com.epam.ryndych.servlet.filter.LoginFilter</filter-class>
   </filter>
-   
   <filter-mapping>
     <filter-name>loginFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  
-<!-- servlet definition -->
-	<servlet>
-	        <servlet-name>ErrorHandler</servlet-name>
-	        <servlet-class>com.epam.ryndych.servlet.ErrorHandlerServlet</servlet-class>
-	</servlet>
-<!-- servlet mappings -->
-	<servlet-mapping>
-	        <servlet-name>ErrorHandler</servlet-name>
-	        <url-pattern>/ErrorHandler</url-pattern>
-	</servlet-mapping>
-  
- <!-- error-code related error pages -->
-	<error-page>
-	    <error-code>404</error-code>
-	    <location>/ErrorHandler</location>
-	</error-page>
-	<error-page>
-	    <error-code>403</error-code>
-	    <location>/ErrorHandler</location>
-	</error-page>
-
-<!-- exception-type related error pages -->
-	<error-page>
-	    <exception-type>javax.servlet.ServletException</exception-type >
-	    <location>/ErrorHandler</location>
-	</error-page>
-
-	<error-page>
-	    <exception-type>java.io.IOException</exception-type >
-	    <location>/ErrorHandler</location>
-	</error-page>
+  <servlet>
+    <servlet-name>ErrorHandler</servlet-name>
+    <servlet-class>com.epam.ryndych.servlet.ErrorHandlerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ErrorHandler</servlet-name>
+    <url-pattern>/ErrorHandler</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/ErrorHandler</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/ErrorHandler</location>
+  </error-page>
+  <error-page>
+    <exception-type>javax.servlet.ServletException</exception-type>
+    <location>/ErrorHandler</location>
+  </error-page>
+  <error-page>
+    <exception-type>java.io.IOException</exception-type>
+    <location>/ErrorHandler</location>
+  </error-page>
 </web-app>

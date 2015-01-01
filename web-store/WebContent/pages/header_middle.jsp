@@ -35,11 +35,18 @@
 							</c:if>						
 						
 						<c:if test="${sessionScope.userLogin != null}">
-							<li><a href="account"><i class="fa fa-user"></i><c:out value="${sessionScope.userLogin }"></c:out></a></li>
-							<li><a href="wishlist"><i class="fa fa-star"></i>Wishlist</a></li>
-							<li><a href="home"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-							<li><a href="cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
-							<li><a href="login?logout=true"><i class="fa fa-lock"></i>Logout</a></li>
+							<c:if test="${sessionScope.userPermission == 'ADMIN'}">
+								<li><a href="account"><i class="fa fa-user"></i><c:out value="${sessionScope.userLogin }"></c:out></a></li>
+								<li><a href="home"><i class="glyphicon glyphicon-home"></i>Home</a></li>
+								<li><a href="login?logout=true"><i class="fa fa-lock"></i>Logout</a></li>
+							</c:if>
+							<c:if test="${sessionScope.userPermission != 'ADMIN'}">
+								<li><a href="account"><i class="fa fa-user"></i><c:out value="${sessionScope.userLogin }"></c:out></a></li>
+								<li><a href="wishlist"><i class="fa fa-star"></i>Wishlist</a></li>
+								<li><a href="home"><i class="glyphicon glyphicon-home"></i>Home</a></li>
+								<li><a href="cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+								<li><a href="login?logout=true"><i class="fa fa-lock"></i>Logout</a></li>
+							</c:if>
 						</c:if>
 					</ul>
 				</div>

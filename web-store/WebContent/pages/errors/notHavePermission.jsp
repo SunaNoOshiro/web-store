@@ -24,12 +24,12 @@
 <body> 
  <div class="container text-center">
 		<div class="logo">
-			<a href="home"><img src="/web-store/images/home/logo.png" alt="" /></a>
+			<a href="/web-store/home"><img src="/web-store/images/home/logo.png" alt="" /></a>
 		</div>
 		<div class="content-404">
 			<h1><b>OPPS!</b> You don't have permission </h1>
 			<p>Uh... So it looks like only ADMIN can have permission to visit this page.</p>
-			<h2><a href="home">Bring me back to Home page</a></h2>
+			<h2><a href="/web-store/home">Bring me back to Home page</a></h2>
 		</div>
 	</div>  
   <jsp:include page="../scripts.jsp" />
