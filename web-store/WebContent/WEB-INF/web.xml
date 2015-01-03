@@ -41,9 +41,9 @@
     <servlet-class>com.epam.ryndych.servlet.ValidateServlet</servlet-class>
   </servlet>
   <servlet>
-	  <servlet-name>item</servlet-name>
-	    <servlet-class>com.epam.ryndych.servlet.ItemServlet</servlet-class>
-	  </servlet>
+    <servlet-name>item</servlet-name>
+    <servlet-class>com.epam.ryndych.servlet.ItemServlet</servlet-class>
+  </servlet>
   <servlet>
     <servlet-name>photo</servlet-name>
     <servlet-class>com.epam.ryndych.servlet.PhotoServlet</servlet-class>
@@ -56,19 +56,27 @@
     <servlet-name>category</servlet-name>
     <servlet-class>com.epam.ryndych.servlet.CategoryServlet</servlet-class>
   </servlet>
-   <servlet-mapping>
+   <servlet>
+    <servlet-name>product-details</servlet-name>
+    <servlet-class>com.epam.ryndych.servlet.ProductDetailsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>product-details</servlet-name>
+    <url-pattern>/product-details</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>photo</servlet-name>
     <url-pattern>/admin/photo</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>item</servlet-name>
     <url-pattern>/admin/item</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>description</servlet-name>
     <url-pattern>/admin/description</url-pattern>
   </servlet-mapping>
-   <servlet-mapping>
+  <servlet-mapping>
     <servlet-name>category</servlet-name>
     <url-pattern>/admin/category</url-pattern>
   </servlet-mapping>

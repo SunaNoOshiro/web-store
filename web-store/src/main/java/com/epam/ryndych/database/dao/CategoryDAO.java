@@ -13,6 +13,7 @@ import com.epam.ryndych.database.transformation.CategoryTransformer;
 public class CategoryDAO {
 	public static final String SELECT_CATEGORY = "SELECT * FROM item_category WHERE id = '?'";
 	public static final String SELECT_CATEGORY_BY_NAME = "SELECT * FROM item_category WHERE name LIKE ?";
+	public static final String SELECT_CATEGORIES_BY_SUPER = "SELECT * FROM item_category WHERE super LIKE ?";
 	public static final String SELECT_ALL_CATEGORIES = "SELECT * FROM item_category";
 
 	public static final String INSERT_CATEGORY = "INSERT INTO "
@@ -79,7 +80,32 @@ public class CategoryDAO {
 		}
 		return category;
 	}
+	
+public static ArrayList<Category> getCategoriesBySuper(String superCategory) {
 		
+		PreparedStatement pStatement = wbConnection.prepareStatement(SELECT_CATEGORIES_BY_SUPER);
+		ResultSet rs = null;
+		ArrayList<Category> categories = null;
+		try {
+			wbConnection.getConnection().setAutoCommit(false);
+			pStatement.setString(1,superCategory);
+			rs = pStatement.executeQuery();
+			if (rs != null) {
+				categories = CategoryTransformer.fromResultSetToCategoriesArray(rs);
+				wbConnection.getConnection().commit();
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			try {
+				wbConnection.getConnection().rollback();
+			} catch (SQLException e1) {
+				System.out.println(e1.getMessage());
+			}
+		}
+		return categories;
+	}
+	
 	public static ArrayList<Category> getAllCategories() {
 		Statement pStatement = wbConnection.createStatement();
 		ResultSet rs = null;

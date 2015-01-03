@@ -42,21 +42,39 @@ public class ItemServlet extends HttpServlet {
 		String manufacturer = request.getParameter("manufacturer");
 		float price = 0;
 		int warranty = 0;
+		int itemId = 0;
 		try {
 			price = Float.parseFloat(request.getParameter("price"));
+		} catch (Exception e) {
+		}
+		try {
 			warranty = Integer.parseInt(request.getParameter("warranty"));
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+		}
+		try {
+			itemId = Integer.parseInt(request.getParameter("itemId"));
+		} catch (Exception e) {
 		}
 		String categoryName = request.getParameter("category");
 
 		String operation = request.getParameter("operation");
+		System.out.println(operation);
 		if(operation.equals("getItems")){
-			System.out.println(operation);
 			ArrayList<Item> items = ItemService.getAllItems();
 			request.setAttribute("items", items);
-			System.out.println(items.get(1).getModel());
-			request.getRequestDispatcher("pages/admin/get_items.jsp").forward(request, response);
+			request.getRequestDispatcher("/pages/admin/get_items.jsp").forward(request, response);
+		}
+		else if(operation.equals("getManufacturers")){
+			ArrayList<String> manufacturers = ItemService.getAllManufacturers();
+			
+			request.setAttribute("manufacturers", manufacturers);
+			request.getRequestDispatcher("/pages/admin/get_manufacturers.jsp").forward(request, response);
+		}
+		else if(operation.equals("getModels")){
+			ArrayList<String> models = ItemService.getAllModels();
+			
+			request.setAttribute("models", models);
+			request.getRequestDispatcher("/pages/admin/get_models.jsp").forward(request, response);
 		}
 		else if(operation.equals("insertItem")){
 			if(model != null && manufacturer!= null && categoryName!= null && price>0 ){
@@ -71,14 +89,29 @@ public class ItemServlet extends HttpServlet {
 				item.setCategory(category);
 				
 				boolean success = ItemService.insertItem(item);
-				if(success)
+				if(success){
 					System.out.println("Item insert was success");
-				else
+					response.getWriter().write("Item insert was success");
+				}
+				else{
 					System.out.println("Item insert was not success");
+					response.getWriter().write("Item insert was not success");
+				}
 			}
 			else{
 				System.out.println("Some of the Item parameters are empty");
 			}
+		}
+		else if(operation.equals("deleteItem")){
+				boolean success = ItemService.deleteItemById(itemId);
+				if (success){
+					System.out.println("Item delete was success");
+					response.getWriter().write("Item delete was success");
+				}						
+				else{
+					System.out.println("Item delete was not success");
+					response.getWriter().write("Item delete was not success");
+				}
 		}
 		else{
 			System.out.println("none");

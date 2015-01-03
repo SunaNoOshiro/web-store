@@ -43,5 +43,17 @@ public class Item {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}	
+	}
+	
+	public boolean equals(Item other) {
+		if(this.id == other.getId()&&
+				this.category.equals(other.getCategory())&&
+				this.manufacturer == other.getManufacturer()&&
+				this.model == other.getModel()&&
+				this.getWarranty() == other.getWarranty()&&
+				this.price == other.getPrice()){
+			return true;
+		}
+		else return false;
+	}
 }

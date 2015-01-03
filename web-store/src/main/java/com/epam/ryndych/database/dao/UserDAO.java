@@ -21,7 +21,7 @@ public class UserDAO {
 			+ "user (first_name,last_name,login,password,black_list,birthday,sex,permission,country,email,phone_number,city,state,address) "
 			+ "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-	public static final String DELETE_USER_BY_ID = "DELETE user WHERE id = '?'";
+	public static final String DELETE_USER_BY_ID = "DELETE FROM user WHERE id = ?";
 	public static final String DELETE_USER_BY_LOGIN = "DELETE user WHERE login LIKE '?'";
 	public static final String DELETE_USER_BY_EMAIL = "DELETE user WHERE email LIKE '?'";
 	public static final String DELETE_USER_BY_PHONE = "DELETE user WHERE phone LIKE '?'";
@@ -108,8 +108,15 @@ public class UserDAO {
 		PreparedStatement pStatement = wbConnection.prepareStatement(DELETE_USER_BY_ID);
 		
 		try {
+			wbConnection.getConnection().setAutoCommit(false);
 			pStatement.setInt(1, id);
-			pStatement.executeUpdate();
+			if(pStatement.executeUpdate()>0){
+				wbConnection.getConnection().commit();
+			}
+			else{
+				wbConnection.getConnection().rollback();
+			}
+			
 		} catch (SQLException e) {
 			return false;
 		}
@@ -173,6 +180,7 @@ public class UserDAO {
 	public static boolean inserteUser(User newUser){
 		PreparedStatement pStatement = wbConnection.prepareStatement(INSERT_USER);
 		try {
+			wbConnection.getConnection().setAutoCommit(false);
 			pStatement.setString(1, newUser.getFirstName());
 			pStatement.setString(2, newUser.getLastName());
 			pStatement.setString(3, newUser.getLogin());
@@ -188,7 +196,13 @@ public class UserDAO {
 			pStatement.setString(13, newUser.getState());	
 			pStatement.setString(14, newUser.getAddress());	
 			
-			pStatement.executeUpdate();
+			if(pStatement.executeUpdate()==1){
+				wbConnection.getConnection().commit();
+			}
+			else{
+				wbConnection.getConnection().rollback();
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;

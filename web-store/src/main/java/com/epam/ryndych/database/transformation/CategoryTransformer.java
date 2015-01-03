@@ -8,8 +8,7 @@ import com.epam.ryndych.database.model.Category;
 public class CategoryTransformer {
 	public static Category fromResultSetToCategory(ResultSet rs){
 		Category category = new Category();	
-		if(rs==null) {
-			
+		if(rs==null) {			
 			return null;}
 		try {
 			if(rs.next()){

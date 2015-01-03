@@ -10,6 +10,10 @@ public class ItemService {
 		return ItemDAO.getItemByID(id);
 	}
 	
+	public static Item getItem(String model,String manufacturer){
+		return ItemDAO.getItem(model, manufacturer);
+	}
+	
 	public static ArrayList<Item> getAllItems(){
 		return ItemDAO.getAllItems();
 	}
@@ -18,11 +22,19 @@ public class ItemService {
 		return ItemDAO.updateItemById(id, newItem);
 	}
 	
-	public static boolean deleteItemById(int id, Item newItem){
+	public static boolean deleteItemById(int id){
 		return ItemDAO.deleteItemByID(id);
 	}
 	
 	public static boolean insertItem(Item newItem){
 		return ItemDAO.insertItem(newItem);
+	}
+	
+	public static ArrayList<String> getAllModels(){
+		return ItemDAO.getAllModels();
+	}
+	
+	public static ArrayList<String> getAllManufacturers(){
+		return ItemDAO.getAllManufacturers();
 	}
 }

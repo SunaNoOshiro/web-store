@@ -2,39 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				
-				$.get("admin/category?operation=getCategories", function(data, status) {
-					$(".category").html(data);
-				});
-				
-				$("#addCategory").click(
-						function() {
-							alert(""+$("#categorySuper").val());
-							$.get("admin/category?operation=insertCategory"+
-									"&categoryName="+$("#categoryName").val()+
-									"&categorySuper="+$("#categorySuper").val(),
-									function(data, status) {
-										alert(data);
-									});
-							$.get("admin/category?operation=getCategories", function(data, status) {
-								$(".category").html(data);
-							});
-						});
-				$("#addItem").click(
-						function() {							
-							$.get("admin/item?operation=insertItem"+
-									"&model="+$("#model").val()+
-									"&manufacturer="+$("#manufacturer").val()+
-									"&price="+$("#price").val()+
-									"&category="+$(".item_add #categorySuper").val()+
-									"&warranty="+$(".item_add #warranty").val(),
-									function(data, status) {
-										alert(data);
-									});
-						});
-			});
+	
 </script>
 
 <section id="form">
@@ -46,7 +14,7 @@
 				<div class="category">
 					<select name="categorySuper" id="categorySuper">
 						<option selected disabled value="">Category Super</option>
-						<option value="">None</option>
+						
 					</select>
 				</div> 
 				<input type="button" value="addCategory" name="addCategory" id="addCategory">
@@ -57,11 +25,11 @@
 		<div class="item_add">
 			<input type="text" placeholder="Model" name="model" id="model"> <input
 				type="text" placeholder="Manufacturer" name="manufacturer" id="manufacturer">
-			<input type="text" placeholder="Price" name="price" id="price">
+			<input type="text" placeholder="Price ($)" name="price" id="price">
 			<div class="category">
 					<select name="categorySuper" id="categorySuper">
 						<option selected disabled value="">Category Super</option>
-						<option value="null">None</option>
+						
 					</select>
 			</div> 
 			<select name="warranty" id="warranty">
@@ -72,6 +40,7 @@
 				<option value="6">6 Month</option>
 				<option value="12">12 Month</option>
 				<option value="24">24 Month</option>
+				<option value="24">36 Month</option>
 			</select> <input type="button" value="addItem" name="addItem" id="addItem">
 		</div>
 	</div>
@@ -79,22 +48,18 @@
 	<div class="col-sm-5 ">
 		<h2>Discription adding</h2>
 		<div class="description_add">
-			<select name="itemManufacturersList">
-				<option selected disabled value="">Item Brand</option>
-				<option value="1">Model</option>
-				<option value="3">3 Month</option>
-				<option value="6">6 Month</option>
-				<option value="12">12 Month</option>
-				<option value="24">24 Month</option>
-			</select>
-			<select name="itemModelsList">
-				<option selected disabled value="">Item Model</option>
-				<option value="1">Model</option>
-				<option value="3">3 Month</option>
-				<option value="6">6 Month</option>
-				<option value="12">12 Month</option>
-				<option value="24">24 Month</option>
-			</select>
+			<div class="manufacturers">
+					<select name="itemManufacturersList" class="itemManufacturersList">
+						<option selected disabled value="">Item Brand</option>
+					</select>
+			</div> 
+			
+			<div class="models">
+					<select name="itemModelsList" class="itemModelsList">
+						<option selected disabled value="">Item Model</option>
+					</select>
+			</div> 			
+			
 			<table class="table">
 				<tr>
 					<th>Name</th>
@@ -102,47 +67,42 @@
 				</tr>
 				<tr>
 					<td><input type="text" placeholder="Name"
-						name="descriptionName"></td>
+						name="descriptionName" id="descriptionName"></td>
 					<td><input type="text" placeholder="Description"
-						name="descriptionValue"></td>
+						name="descriptionValue" id="descriptionValue"></td>
 				</tr>
 			</table>
 			 
-			<input type="button" value="+" name="addDescriptionItem"> 
-			<input type="button" value="addDescription" name="addDescription">
+			<input type="button" value="+" name="addDescriptionItem" id="addDescriptionItem"> 
+			<input type="button" value="addDescription" name="addDescription" id="addDescription">
 		</div>
-		<div>
+		<div >
 			<h2>Image adding</h2>
-			<div class="description_add">
-				<select name="itemManufacturersList">
-					<option selected disabled value="">Item Brand</option>
-					<option value="1">Model</option>
-					<option value="3">3 Month</option>
-					<option value="6">6 Month</option>
-					<option value="12">12 Month</option>
-					<option value="24">24 Month</option>
-				</select>
-				<select name="itemModelsList">
-					<option selected disabled value="">Item Model</option>
-					<option value="1">Model</option>
-					<option value="3">3 Month</option>
-					<option value="6">6 Month</option>
-					<option value="12">12 Month</option>
-					<option value="24">24 Month</option>
-				</select>
+			<div class="image_add">
+				<div class="manufacturers">
+					<select name="itemManufacturersList" class="itemManufacturersList">
+						<option selected disabled value="">Item Brand</option>
+					</select>
+				</div> 
+			
+			<div class="models">
+					<select name="itemModelsList" class="itemModelsList">
+						<option selected disabled value="">Item Model</option>
+					</select>
+			</div> 	
 				<table class="table">
 					<tr>
 						<th>URL</th>
 						<th>Discription</th>
 					</tr>
 					<tr>
-						<td><input type="text" placeholder="URL" name="imageURL"></td>
+						<td><input type="text" placeholder="URL" name="imageURL" id="imageURL"></td>
 						<td><input type="text" placeholder="Description"
-							name="imageDescriptionValue"></td>
+							name="imageDescriptionValue" id ="description"></td>
 					</tr>
 				</table>
-				<input type="button" value="+" name="addImageItem"> <input
-					type="button" value="addImage" name="addImage">
+				<input type="button" value="+" name="addImage" id="addImage"> 
+			<input type="button" value="addImage" name="addImage" id="addImage">
 			</div>
 		</div>
 	</div>

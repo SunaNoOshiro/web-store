@@ -2,15 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
-#users tr:hover {
+#users tr:hover,#items tr:hover {
 	color: #FDB45E;
 	background: #FFF;
 	box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
 }
-#btn{
+#users tr button:hover,#items tr button:hover {
+	color: #FFF;
+	background: #FDB45E;
+	box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+.btnl{
 	cursor: pointer;
 }
-#btn:hover {
+.btnl:hover {
 	color: #FDB45E;
 }
 h2{
@@ -22,55 +27,25 @@ h2{
     color: #FDB45E; /* Цвет линии для IE6-7 */
     height: 1px; /* Толщина линии */
 }
+
 </style>
 
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		var usersList = true;
-		var itemList = true;
-		$('#btn').click(function () {
-			if(usersList==false){
-				usersList=true;
-				$('#users').slideDown();
-			}
-			else{
-				usersList=false;
-				$('#users').slideUp();
-			}
-			
-			if(itemList==false){
-				itemList=true;
-				$('#items').slideDown();
-			}
-			else{
-				itemList=false;
-				$('#items').slideUp();
-			}	
-	    });
-		
-		$.get("userlist", function(data, status) {
-			$("#users").html(data);
-		});
-		$.get("admin/item?operation=getItems", function(data, status) {
-			alert(data);
-			$("#items").html(data);
-		});
 
-	});
 </script>
 
 <section id="form">
 	<div class="col-sm-10 col-sm-offset-1 line"></div>
 	<div class="col-sm-10 col-sm-offset-1">
-		<h2 id="btn">List of all users</h2>
+		<h2 class="btnl" id="btn1">List of all users</h2>
 		<div id="users" >
 		</div>
 	</div>
 	<div class="col-sm-10 col-sm-offset-1 line"></div>
 	<div class="col-sm-10 col-sm-offset-1">
-		<h2 id="btn">List of all items</h2>
-		<div class="items"></div>
+		<h2 class="btnl" id="btn2">List of all items</h2>
+		<div id="items"></div>
 	</div>
 	<div class="col-sm-10 col-sm-offset-1 line"></div>
 

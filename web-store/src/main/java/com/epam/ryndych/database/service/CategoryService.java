@@ -18,6 +18,10 @@ public class CategoryService {
 		return CategoryDAO.getAllCategories();
 	}
 	
+	public static ArrayList<Category> getCategoriesBySuper(String superCategory ) {
+		return CategoryDAO.getCategoriesBySuper(superCategory);
+	}
+	
 	public static boolean deleteCategoryByID(int id) {
 		return CategoryDAO.deleteCategoryByID(id);
 	}

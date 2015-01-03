@@ -3,7 +3,6 @@
 
 <select name="categorySuper" id="categorySuper">
 	<option selected disabled value="">Category Super</option>
-	<option value="null">None</option>
 	<c:forEach var="category" items="${categories}">
 		<option value="${category.name}"><c:out	value="${category.name}"></c:out></option>
 	</c:forEach>

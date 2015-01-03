@@ -9,6 +9,7 @@
 	<title>Cart | E-Shopper</title>
 	<jsp:include page="../links.jsp" />
 	<jsp:include page="../scripts.jsp" />
+	<jsp:include page="admin_scripts.jsp" />
 		<style type="text/css">
 		
 		#container-toogle {

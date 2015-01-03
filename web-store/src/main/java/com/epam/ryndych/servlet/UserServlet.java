@@ -40,8 +40,17 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		String operation = "";
 		String from = request.getParameter("from");
+		int userId=0;
+		try{
+			operation=request.getParameter("operation");
+			userId = Integer.parseInt(request.getParameter("userId"));
+		}
+		catch(Exception e){
+			
+		}
+		System.out.println(operation);
 		if (from != null) {
 			if (from.equals("login")) {
 				User user = login(request);
@@ -69,7 +78,19 @@ public class UserServlet extends HttpServlet {
 			else if(from.equals("update_profile")){
 				//update user's info
 			}
-		} else {
+		} 
+		else if(operation.equals("deleteItem")){
+			boolean success = UserService.deleteUserByID(userId);
+			if (success){
+				System.out.println("User delete was success");
+				response.getWriter().write("User delete was success");
+			}						
+			else{
+				System.out.println("User delete was not success");
+				response.getWriter().write("User delete was not success");
+			}
+	}
+		else {
 			request.getRequestDispatcher("home").forward(request, response);
 		}
 

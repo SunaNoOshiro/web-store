@@ -12,7 +12,9 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-	<jsp:include page="cart_items.jsp" />
+	<div id="cart_items">
+		<jsp:include page="cart_items.jsp" />
+	</div>	
 	<jsp:include page="cart_action.jsp" />
 	<jsp:include page="footer.jsp" />
 	<jsp:include page="scripts.jsp" />

@@ -53,7 +53,7 @@ public class LoginFilter implements Filter {
 			//anonim
 			else if (session.getAttribute("userPermission") == null) {
 				if (uri.endsWith("login") || uri.endsWith("home")  || uri.endsWith("/") 
-						|| uri.endsWith("user") || uri.endsWith("user")) {
+						|| uri.endsWith("product-details")	|| uri.endsWith("user") || uri.endsWith("user")) {
 					chain.doFilter(request, response);
 				} else {
 					request.getRequestDispatcher("/pages/errors/mustToLogin.jsp").forward(request, response);
@@ -61,9 +61,9 @@ public class LoginFilter implements Filter {
 			} 
 			//admin
 			else if (session.getAttribute("userPermission").equals("ADMIN")) {
-				if ((uri.endsWith("account") || uri.endsWith("userlist") || uri.endsWith("login") 
-						|| uri.endsWith("home") || uri.endsWith("/") || uri.endsWith("admin/category")
-						||  uri.endsWith("/admin/item"))) {
+				if ((uri.endsWith("account") || uri.endsWith("userlist") || uri.endsWith("user")|| uri.endsWith("login") 
+						|| uri.endsWith("product-details") || uri.endsWith("home") || uri.endsWith("/") || uri.endsWith("admin/category")
+						||  uri.endsWith("/admin/item") ||  uri.endsWith("/admin/description") ||uri.endsWith("/admin/photo"))) {
 					chain.doFilter(request, response);
 				} else {
 					request.getRequestDispatcher("/pages/errors/404.jsp").forward(request, response);
@@ -73,7 +73,7 @@ public class LoginFilter implements Filter {
 			//user
 			else if (session.getAttribute("userPermission").equals("USER")) {
 				if ((uri.endsWith("cart") || uri.endsWith("wishlist")
-						|| uri.endsWith("account") || uri.endsWith("shop")
+						|| uri.endsWith("product-details")|| uri.endsWith("account") || uri.endsWith("shop")
 						|| uri.endsWith("login") || uri.endsWith("home") || uri.endsWith("/"))) {
 					chain.doFilter(request, response);
 				} else {

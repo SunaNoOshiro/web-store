@@ -29,4 +29,13 @@ public class Category {
 		this.superCategoty = superCategoty;
 	}
 	
+	public boolean equals(Category obj) {
+		if(this.id == obj.getId() 
+				&& this.name==obj.getName() 
+				&& this.superCategoty==obj.getSuperCategoty()){
+			return true;
+		}
+		else return false;
+	}
+	
 }

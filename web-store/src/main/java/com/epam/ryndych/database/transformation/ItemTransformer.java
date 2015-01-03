@@ -17,7 +17,7 @@ public class ItemTransformer {
 				float price = rs.getFloat("price");;
 				int warranty = rs.getInt("warranty");
 				String model = rs.getString("model");
-				String manufacturer = rs.getString("warranty");
+				String manufacturer = rs.getString("manufacturer");
 				int categoryId = rs.getInt("category_id");
 				Category category = CategoryService.getCategory(categoryId);
 				
@@ -46,7 +46,7 @@ public class ItemTransformer {
 				float price = rs.getFloat("price");;
 				int warranty = rs.getInt("warranty");
 				String model = rs.getString("model");
-				String manufacturer = rs.getString("warranty");
+				String manufacturer = rs.getString("manufacturer");
 				int categoryId = rs.getInt("category_id");
 				Category category = CategoryService.getCategory(categoryId);
 				

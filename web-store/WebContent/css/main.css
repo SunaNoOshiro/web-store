@@ -6,6 +6,16 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
 @import url(http://fonts.googleapis.com/css?family=Abel);
 
+.cart_quantity_up{
+	cursor: pointer;
+}
+.product-details .col-sm-5 #similar-product img{
+	height: 100px;
+	width: 92px;
+}
+.cart_quantity_down{
+	cursor: pointer;
+}
 body {
   font-family: 'Roboto', sans-serif;
   background:;
@@ -870,7 +880,7 @@ h2.title {
 	font-weight: 700;
 }
 .product-overlay h2{
-	color: #fff;
+	color: #000;
 	font-family: 'Roboto', sans-serif;
 	font-size: 24px;
 	font-weight: 700;
@@ -901,7 +911,7 @@ h2.title {
   transition: height 500ms ease 0s;
   width: 100%;
   display: block;
-  opacity:;
+  opacity: 0.8;
 }
 
 .single-products:hover .product-overlay {
@@ -915,17 +925,18 @@ h2.title {
   position: absolute;
   bottom: 0;
   text-align: center;
-  width: 100%;
+  width: 100%; 
+  color: #000;
 }
 
 .product-overlay .add-to-cart {
   background:#fff;
   border: 0 none;
   border-radius: 0;
-  color: #FE980F;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
   margin-bottom: 25px;
+  color: #000;
 }
 
 .product-overlay .add-to-cart:hover {
@@ -938,7 +949,7 @@ h2.title {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #fff;
+  color: #000;
 }
 
 
@@ -1473,7 +1484,7 @@ color: #696763;
   width: 100%;
 }
 
-#form .item_add input, #form .category_add input, #form  .description_add input {
+#form .item_add input, #form .category_add input, #form  .description_add input ,#form  .image_add input{
   background: #F0F0E9;
   border: medium none;
   color: #696763;
@@ -1488,7 +1499,7 @@ color: #696763;
   width: 100%;
 }
 
-#form .item_add button, #form .category_add button, #form  .description_add button{
+#form .item_add button, #form .category_add button, #form  .description_add button,#form  .image_add button{
   background: #FE980F;
   border: medium none;
   border-radius: 0;
@@ -1498,7 +1509,7 @@ color: #696763;
   padding: 6px 25px;
 }
 
-#form .item_add select, #form .category_add select, #form .description_add  select {
+#form .item_add select, #form .category_add select, #form .description_add  select,#form .image_add  select {
   background: #F0F0E9;
   border: medium none;
   color: #696763;
@@ -1691,6 +1702,10 @@ color: #696763;
 .cart_product {
   display: block;
   margin: 15px -70px 10px 25px;
+}
+.cart_product img {
+  width:50px;
+  height: 50px;
 }
 
 .cart_quantity_button a {

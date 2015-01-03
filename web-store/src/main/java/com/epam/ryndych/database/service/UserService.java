@@ -22,4 +22,8 @@ public class UserService {
 	public static User getUserByLogin(String login){
 		return UserDAO.getUserByLogin(login);
 	}
+	
+	public static boolean deleteUserByID(int id){
+		return UserDAO.deleteUserByID(id);
+	}
 }
