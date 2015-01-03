@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 	
 <div class="footer-bottom">
 	<div class="container">
 		<div class="row">
-			<p class="pull-left">Copyright © 2014 Web-Store Inc. All rights
+			<p class="pull-left">Copyright Â© 2014 Web-Store Inc. All rights
 				reserved.</p>
 			<p class="pull-right">
 				Designed by <span><a target="_blank"

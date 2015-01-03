@@ -60,6 +60,14 @@
     <servlet-name>product-details</servlet-name>
     <servlet-class>com.epam.ryndych.servlet.ProductDetailsServlet</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>setLocale</servlet-name>
+    <servlet-class>com.epam.ryndych.servlet.SetLocaleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>setLocale</servlet-name>
+    <url-pattern>/SetLocaleServlet</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>product-details</servlet-name>
     <url-pattern>/product-details</url-pattern>
@@ -117,11 +125,11 @@
     <url-pattern>/validation</url-pattern>
   </servlet-mapping>
   <filter>
-    <filter-name>loginFilter</filter-name>
-    <filter-class>com.epam.ryndych.servlet.filter.LoginFilter</filter-class>
+    <filter-name>permissionFilter</filter-name>
+    <filter-class>com.epam.ryndych.servlet.filter.PermissionFilter</filter-class>
   </filter>
   <filter-mapping>
-    <filter-name>loginFilter</filter-name>
+    <filter-name>permissionFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
   <servlet>

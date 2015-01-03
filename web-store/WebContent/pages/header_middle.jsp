@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!--header-middle-->
 <div class="header-middle">
@@ -12,12 +12,12 @@
 				<div class="btn-group pull-right">
 					<div class="btn-group">
 						<button type="button" class="btn btn-default dropdown-toggle usa"
-							data-toggle="dropdown">
-							UA <span class="caret"></span>
+							data-toggle="dropdown" ><c:out value="${sessionScope.locale }"></c:out>
+							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu">
-							<li><a href="#">UA</a></li>
-							<li><a href="#">UK</a></li>
+							<li><a href="/web-store/SetLocaleServlet?language=ua&country=UA" title="" id="localeUA">UA</a></li>
+							<li><a href="/web-store/SetLocaleServlet?language=en&country=US" title="" id="localeUS">US</a></li>
 						</ul>
 					</div>
 				</div>
@@ -29,9 +29,7 @@
 						
 						<c:if test="${sessionScope.userLogin == null}">
 							<li><a href="login"><i class="fa fa-lock"></i><c:out value="${sessionScope.headerTopLogin }"></c:out></a></li>
-							<li><a href="wishlist"><i class="fa fa-star"></i><c:out value="${sessionScope.headerTopWishlist }"></c:out></a></li>
 							<li><a href="home"><i class="glyphicon glyphicon-home"></i><c:out value="${sessionScope.headerTopHome }"></c:out></a></li>
-							<li><a href="cart"><i class="fa fa-shopping-cart"></i><c:out value="${sessionScope.headerTopCart }"></c:out></a></li>
 							</c:if>						
 						
 						<c:if test="${sessionScope.userLogin != null}">

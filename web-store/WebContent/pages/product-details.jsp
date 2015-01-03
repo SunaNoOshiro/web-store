@@ -36,7 +36,8 @@
 				<div class="col-sm-9 padding-right">
 					
 					<myTag:printProductDetails itemId="${itemId}"/>
-					<div class="category-tab shop-details-tab"><!--category-tab-->
+					<!--category-tab
+					<div class="category-tab shop-details-tab">
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
 								<li><a href="#details" data-toggle="tab">Details</a></li>
@@ -224,9 +225,10 @@
 							</div>
 							
 						</div>
-					</div><!--/category-tab-->
-					
-					<div class="recommended_items"><!--recommended_items-->
+					</div>
+					category-tab-->
+					<!--recommended_items
+					<div class="recommended_items">
 						<h2 class="title text-center">recommended items</h2>
 						
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
@@ -315,14 +317,15 @@
 								<i class="fa fa-angle-right"></i>
 							  </a>			
 						</div>
-					</div><!--/recommended_items-->
+					</div>
+				/recommended_items-->
 					
 				</div>
 			</div>
 		</div>
 		</div>
 	</section>
-
+	<jsp:include page="footer.jsp"></jsp:include>
   
     <script src="js/jquery.js"></script>
 	<script src="js/price-range.js"></script>

@@ -54,34 +54,26 @@ public class PrintCategoriesMenu extends SimpleTagSupport {
 					sb.append("</h4>");
 					sb.append("</div>");
 					
-					
 					sb.append("<div id=\"");
 					sb.append(c.getName());
 					sb.append("\" class=\"panel-collapse collapse\">");
 					sb.append("<div class=\"panel-body\">");
 					sb.append("<ul>");
 					for(Category child:categotiesChild){
-						
 						sb.append("<li><a href=\"#\">");
 						sb.append(child.getName());
 						sb.append("</a></li>");
-						
 					}
 					sb.append("</ul>");
 					sb.append("</div>");
 					sb.append("</div>");
 				}
 				
-				
 				sb.append("</div>");
 				
 				out.println(sb.toString());
 			}
 			
-		} else {
-			/* use message from the body */
-			getJspBody().invoke(sw);
-			getJspContext().getOut().println(sw.toString());
-		}
+		} 
 	}
 }

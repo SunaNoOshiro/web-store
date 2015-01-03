@@ -15,12 +15,12 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-public class LoginFilter implements Filter {
+public class PermissionFilter implements Filter {
 
 	/**
 	 * Default constructor.
 	 */
-	public LoginFilter() {
+	public PermissionFilter() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -52,16 +52,16 @@ public class LoginFilter implements Filter {
 			} 
 			//anonim
 			else if (session.getAttribute("userPermission") == null) {
-				if (uri.endsWith("cart") || uri.endsWith("login") || uri.endsWith("home")  || uri.endsWith("/") 
+				if (uri.endsWith("SetLocaleServlet") ||uri.endsWith("shop") ||uri.endsWith("cart") || uri.endsWith("login") || uri.endsWith("home")  || uri.endsWith("/") 
 						|| uri.endsWith("product-details")	|| uri.endsWith("user") || uri.endsWith("user")) {
 					chain.doFilter(request, response);
 				} else {
 					request.getRequestDispatcher("/pages/errors/mustToLogin.jsp").forward(request, response);
 					}
 			} 
-			//admin
+			//admin 
 			else if (session.getAttribute("userPermission").equals("ADMIN")) {
-				if ((uri.endsWith("cart") ||uri.endsWith("account") || uri.endsWith("userlist") || uri.endsWith("user")|| uri.endsWith("login") 
+				if ((uri.endsWith("SetLocaleServlet") ||uri.endsWith("shop") ||uri.endsWith("cart") ||uri.endsWith("account") || uri.endsWith("userlist") || uri.endsWith("user")|| uri.endsWith("login") 
 						|| uri.endsWith("product-details") || uri.endsWith("home") || uri.endsWith("/") || uri.endsWith("admin/category")
 						||  uri.endsWith("/admin/item") ||  uri.endsWith("/admin/description") ||uri.endsWith("/admin/photo"))) {
 					chain.doFilter(request, response);
@@ -72,7 +72,7 @@ public class LoginFilter implements Filter {
 			} 
 			//user
 			else if (session.getAttribute("userPermission").equals("USER")) {
-				if ((uri.endsWith("cart") || uri.endsWith("wishlist")
+				if ((uri.endsWith("SetLocaleServlet") ||uri.endsWith("cart") || uri.endsWith("wishlist")
 						|| uri.endsWith("product-details")|| uri.endsWith("account") || uri.endsWith("shop")
 						|| uri.endsWith("login") || uri.endsWith("home") || uri.endsWith("/"))) {
 					chain.doFilter(request, response);

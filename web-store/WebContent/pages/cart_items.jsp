@@ -16,7 +16,7 @@
 	
 
 	<div id="printItemsInCart">
-		<myTag:printItemsInCart userId="${sessionScope.userId}"/>		
+		<myTag:printItemsInCart userId="${sessionScope.userId}" bundle="${sessionScope.bundle }"/>		
 	</div>
 		
 	</div>

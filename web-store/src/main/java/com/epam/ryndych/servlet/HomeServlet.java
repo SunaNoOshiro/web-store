@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.epam.ryndych.database.logger.Logger;
 
@@ -36,11 +37,13 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Logger.LOGGER.info(request.getRequestURI());
-		String language = new String("en");
-	    String country = new String("US");
-		
-		Locale locale = new Locale(language, country);
-		SetLocaleServlet.setLocaleToSession(locale, request, response);
+		String language = "en";
+	    String country = "US";
+	    HttpSession session = request.getSession();
+	    if(session.getAttribute("locale")==null ){
+			Locale locale = new Locale(language, country);
+			SetLocaleServlet.setLocaleToSession(locale, request, response);
+		}
 		request.getRequestDispatcher("pages/index.jsp").forward(request, response);
 	}
 

@@ -52,7 +52,7 @@ public class CartServlet extends HttpServlet {
 			userId=Integer.parseInt(request.getParameter("userId"));		
 			qty=Integer.parseInt(request.getParameter("qty"));
 		}catch (Exception e){	
-			Logger.LOGGER.error(e.getMessage());
+			Logger.LOGGER.warn("itemId or userId or qty are null");
 		}
 
 		if(operation!=null && operation.equals("insertItem")){

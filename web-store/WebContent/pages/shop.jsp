@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="/WEB-INF/mytags.tld" prefix="myTag" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
@@ -25,12 +24,13 @@
 			
 				<div class="col-sm-9 padding-right">	
 				<div class="features_items">	
+				<jsp:include page="user/user_scripts.jsp"></jsp:include>
 						<h2 class="title text-center"><c:out value="${sessionScope.featuresItemsTitle }"></c:out></h2>
 						<c:if test="${pageId == null}">
-							<myTag:printFeaturesItems userId="${sessionScope.userId }" pageId="1"/>	
+							<myTag:printFeaturesItems userId="${sessionScope.userId }" pageId="1" bundle="${sessionScope.bundle }"/>	
 						</c:if>
 						<c:if test="${pageId != null}">
-							<myTag:printFeaturesItems userId="${sessionScope.userId }" pageId="${pageId}"/>
+							<myTag:printFeaturesItems userId="${sessionScope.userId }" pageId="${pageId}" bundle="${sessionScope.bundle }"/>
 						</c:if>		
 						</div>
 				</div>
