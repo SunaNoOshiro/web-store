@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Category;
 import com.epam.ryndych.database.model.Item;
 import com.epam.ryndych.database.service.CategoryService;
@@ -29,6 +30,7 @@ public class ItemTransformer {
 				item.setCategory(category);
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return item;
@@ -60,7 +62,7 @@ public class ItemTransformer {
 				items.add(item);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return items;

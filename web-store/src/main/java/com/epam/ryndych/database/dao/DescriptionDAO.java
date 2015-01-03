@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.epam.ryndych.database.connection.WebStoreConnectionPool;
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Description;
 import com.epam.ryndych.database.transformation.DescriptionTransformer;
 
@@ -39,7 +40,7 @@ public class DescriptionDAO {
 				descriptions = DescriptionTransformer.fromResultSetToItemsArray(rs);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return descriptions;
 	}
@@ -57,7 +58,7 @@ public class DescriptionDAO {
 				description = DescriptionTransformer.fromResultSetToItem(rs);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return description;
 	}
@@ -79,7 +80,7 @@ public class DescriptionDAO {
 			else 
 				return false;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 	}
@@ -99,7 +100,7 @@ public class DescriptionDAO {
 			else 
 				return false;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 	}
@@ -117,7 +118,7 @@ public class DescriptionDAO {
 
 			pStatement.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 		return true;
@@ -142,7 +143,7 @@ public class DescriptionDAO {
 				return false;
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 	}

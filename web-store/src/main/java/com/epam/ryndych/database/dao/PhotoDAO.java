@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.epam.ryndych.database.connection.WebStoreConnectionPool;
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Photo;
 import com.epam.ryndych.database.transformation.PhotoTransformer;
 
@@ -47,7 +48,7 @@ public class PhotoDAO {
 				photos = PhotoTransformer.fromResultSetToItemsArray(rs);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return photos;
 	}
@@ -64,7 +65,7 @@ public class PhotoDAO {
 				photo = PhotoTransformer.fromResultSetToItem(rs);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return photo;
 	}
@@ -83,7 +84,7 @@ public class PhotoDAO {
 				photo = PhotoTransformer.fromResultSetToItem(rs);
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return photo;
 	}
@@ -103,7 +104,7 @@ public class PhotoDAO {
 			else 
 				return false;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 	}
@@ -128,7 +129,7 @@ public class PhotoDAO {
 			else 
 				return false;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 	}
@@ -152,7 +153,12 @@ public class PhotoDAO {
 			else 
 				return false;
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
+			try {
+				wbConnection.getConnection().rollback();
+			} catch (SQLException e1) {
+				Logger.LOGGER.error(e1.getMessage());
+			}
 			return false;
 		}
 	}
@@ -177,7 +183,7 @@ public class PhotoDAO {
 				return false;
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 	}
@@ -199,7 +205,7 @@ public class PhotoDAO {
 				return false;
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 	}

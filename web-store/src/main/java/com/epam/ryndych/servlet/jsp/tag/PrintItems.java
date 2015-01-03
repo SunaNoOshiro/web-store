@@ -8,6 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Description;
 import com.epam.ryndych.database.service.DescriptionService;
 
@@ -23,6 +24,7 @@ public class PrintItems extends SimpleTagSupport {
 	StringWriter sw = new StringWriter();
 
 	public void doTag() throws JspException, IOException {
+		Logger.LOGGER.info(this.getClass().getSimpleName());
 		ArrayList<Description> descriptions = DescriptionService.getDescriptions(itemId);
 		
 		if (descriptions != null) {

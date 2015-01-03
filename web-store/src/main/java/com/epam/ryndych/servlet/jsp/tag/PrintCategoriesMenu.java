@@ -8,6 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Category;
 import com.epam.ryndych.database.service.CategoryService;
 
@@ -16,6 +17,7 @@ public class PrintCategoriesMenu extends SimpleTagSupport {
 	StringWriter sw = new StringWriter();
 
 	public void doTag() throws JspException, IOException {
+		Logger.LOGGER.info(this.getClass().getSimpleName());
 		ArrayList<Category>  categoties = CategoryService.getCategoriesBySuper("root");
 		
 		
@@ -25,7 +27,6 @@ public class PrintCategoriesMenu extends SimpleTagSupport {
 			for(Category c : categoties){
 				ArrayList<Category>  categotiesChild =null;
 				categotiesChild = CategoryService.getCategoriesBySuper(c.getName());
-				System.out.println(categotiesChild);
 				StringBuilder sb = new StringBuilder();
 				sb.append("<div class=\"panel panel-default\">");
 				sb.append("<div class=\"panel-heading\">");

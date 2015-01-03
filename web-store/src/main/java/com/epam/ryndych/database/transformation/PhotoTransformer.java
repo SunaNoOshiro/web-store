@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 
+
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Photo;
 
 public class PhotoTransformer {
@@ -19,6 +21,7 @@ public class PhotoTransformer {
 				photo.setUrl(rs.getString("url"));
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return photo;
@@ -39,7 +42,7 @@ public class PhotoTransformer {
 				photos.add(photo);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return photos;

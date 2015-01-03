@@ -56,7 +56,7 @@
     <servlet-name>category</servlet-name>
     <servlet-class>com.epam.ryndych.servlet.CategoryServlet</servlet-class>
   </servlet>
-   <servlet>
+  <servlet>
     <servlet-name>product-details</servlet-name>
     <servlet-class>com.epam.ryndych.servlet.ProductDetailsServlet</servlet-class>
   </servlet>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.epam.ryndych.database.service.UserService;
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.User;;
 
 /**
@@ -29,6 +30,7 @@ public class UsersServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		doPost(request, response);
 	}
 
@@ -36,7 +38,7 @@ public class UsersServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		Logger.LOGGER.info(request.getRequestURI());
 		ArrayList<User> users =  UserService.getAllUsers();
 		request.setAttribute("users", (ArrayList<User>) users);
 		request.getRequestDispatcher("pages/admin/user.jsp").forward(request, response);

@@ -1,20 +1,21 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!--sign up form-->
 <div class="signup-form">
-	<h2>New User Signup!</h2>
+	<h2><c:out value="${sessionScope.loginSigninTitle }"></c:out></h2>
 	<form action="user" method="post">
 		<input name="from"  value="signin" type="hidden"/> 
-		<input type="text" placeholder="First Name" name="firstName" />
-		<input type="text" placeholder="Last Name" name="lastName" />
-		<input type="text" placeholder="Login" name="login" />
-		<input type="password" placeholder="Password" name="password" />
-		<input type="password" placeholder="Confirm Password" name="confirmPassword" />
-		<input type="email" placeholder="Email Address" name="email" />
-		<input type="date" placeholder="Birthday" name="birthday" />
-		<input type="tel" placeholder="Tel. number" name="phone" /> 
+		<input type="text" placeholder="${sessionScope.loginFirstName}  " name="firstName" />
+		<input type="text" placeholder="${sessionScope.loginLastName}  " name="lastName" />
+		<input type="text" placeholder="${sessionScope.loginLogin} " name="login" />
+		<input type="password" placeholder="${sessionScope.loginPassword} " name="password" />
+		<input type="password" placeholder="${sessionScope.loginConfirmPassword}  " name="confirmPassword" />
+		<input type="email" placeholder="${sessionScope.loginEmail}  " name="email" />
+		<input type="date" placeholder="${sessionScope.loginBirthday} " name="birthday" />
+		<input type="tel" placeholder="${sessionScope.loginTelNumber}" name="phone" /> 
 		<select name="country">
-			<option selected disabled value="">Select Country</option>
+			<option selected disabled value=""><c:out value="${sessionScope.loginSelectCountry }"></c:out></option>
 			<option value="United States">United States</option>
 			<option value="United Kingdom">United Kingdom</option>
 			<option value="Afghanistan">Afghanistan</option>
@@ -257,15 +258,15 @@
 			<option value="Zambia">Zambia</option>
 			<option value="Zimbabwe">Zimbabwe</option>
 		</select>
-		<input type="text" placeholder="State" name="state" />
-		<input type="text" placeholder="City" name="city" />
-		<input type="text" placeholder="Address" name="address" />
+		<input type="text" placeholder="${sessionScope.loginState}" name="state" />
+		<input type="text" placeholder="${sessionScope.loginCity}" name="city" />
+		<input type="text" placeholder="${sessionScope.loginAddress}" name="address" />
 		<select name="sex">
-			<option selected disabled value="">Select Sex</option>
-			<option value="Male">Male</option>
-			<option value="Female">Female</option>
+			<option selected disabled value=""><c:out value="${sessionScope.loginSelectSex }"></c:out></option>
+			<option value="Male"><c:out value="${sessionScope.loginMale }"></c:out></option>
+			<option value="Female"><c:out value="${sessionScope.loginFemale }"></c:out></option>
 		</select>
-		<button type="submit" class="btn btn-default" >Signup</button>
+		<button type="submit" class="btn btn-default" ><c:out value="${sessionScope.loginSignup }"></c:out></button>
 	</form>
 </div>
 <!--/sign up form-->

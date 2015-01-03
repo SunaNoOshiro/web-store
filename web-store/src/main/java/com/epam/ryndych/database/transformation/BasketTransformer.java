@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Basket;
 import com.epam.ryndych.database.model.Item;
 import com.epam.ryndych.database.service.ItemService;
@@ -22,6 +23,7 @@ public class BasketTransformer {
 				basket.setUserId(rs.getInt("user_id"));
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return basket;

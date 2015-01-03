@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.User;
 import com.epam.ryndych.database.service.UserService;
 
@@ -31,6 +32,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		doPost(request, response);
 	}
 
@@ -40,6 +42,7 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		String operation = "";
 		String from = request.getParameter("from");
 		int userId=0;
@@ -48,14 +51,14 @@ public class UserServlet extends HttpServlet {
 			userId = Integer.parseInt(request.getParameter("userId"));
 		}
 		catch(Exception e){
-			
+			Logger.LOGGER.error(e.getMessage());
 		}
 		System.out.println(operation);
 		if (from != null) {
 			if (from.equals("login")) {
 				User user = login(request);
 				if (user != null) {
-					System.out.println("User was found");
+					Logger.LOGGER.info("User was found");
 
 					// Create a session object if it is already not created.
 					HttpSession session = request.getSession(true);
@@ -82,11 +85,11 @@ public class UserServlet extends HttpServlet {
 		else if(operation.equals("deleteItem")){
 			boolean success = UserService.deleteUserByID(userId);
 			if (success){
-				System.out.println("User delete was success");
+				Logger.LOGGER.info("User delete was success");
 				response.getWriter().write("User delete was success");
 			}						
 			else{
-				System.out.println("User delete was not success");
+				Logger.LOGGER.info("User delete was not success");
 				response.getWriter().write("User delete was not success");
 			}
 	}
@@ -98,14 +101,14 @@ public class UserServlet extends HttpServlet {
 
 	private User login(HttpServletRequest request) {
 		String login = request.getParameter("login");
-		System.out.println("Finding user...");
+		Logger.LOGGER.info("Finding user...");
 		User user = UserService.getUserByLogin(login);
 		return user;
 	}
 
 	private User insertNewUser(HttpServletRequest request) {
 		User user = new User();
-		System.out.println("Adding user to DB...");
+		Logger.LOGGER.info("Adding user to DB...");
 
 		user.setFirstName(request.getParameter("firstName"));
 		user.setLastName(request.getParameter("lastName"));
@@ -124,7 +127,7 @@ public class UserServlet extends HttpServlet {
 			user.setBirthday(Date.valueOf(request.getParameter("birthday")));
 
 		} catch (IllegalArgumentException e) {
-			System.out.println("Request parameter birthday was null");
+			Logger.LOGGER.info("Request parameter birthday was null");
 		}
 
 		if (user.getAddress() == null || user.getBirthday() == null
@@ -132,13 +135,12 @@ public class UserServlet extends HttpServlet {
 				|| user.getEmail() == null || user.getFirstName() == null
 				|| user.getLastName() == null || user.getLogin() == null
 				|| user.getPassword() == null || user.getPhoneNumber() == null) {
-			System.out
-					.println("User wasn't added to DB, because one of the parameters was null");
+			Logger.LOGGER.info("User wasn't added to DB, because one of the parameters was null");
 		} else {
 			if (UserService.insertUser(user))
-				System.out.println("User was added to DB");
+				Logger.LOGGER.info("User was added to DB");
 			else
-				System.out.println("User was not added to DB");
+				Logger.LOGGER.info("User was not added to DB");
 		}
 
 		return user;

@@ -28,24 +28,24 @@
 						<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 						
 						<c:if test="${sessionScope.userLogin == null}">
-							<li><a href="login"><i class="fa fa-lock"></i>Login</a></li>
-							<li><a href="wishlist"><i class="fa fa-star"></i>Wishlist</a></li>
-							<li><a href="home"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-							<li><a href="cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
+							<li><a href="login"><i class="fa fa-lock"></i><c:out value="${sessionScope.headerTopLogin }"></c:out></a></li>
+							<li><a href="wishlist"><i class="fa fa-star"></i><c:out value="${sessionScope.headerTopWishlist }"></c:out></a></li>
+							<li><a href="home"><i class="glyphicon glyphicon-home"></i><c:out value="${sessionScope.headerTopHome }"></c:out></a></li>
+							<li><a href="cart"><i class="fa fa-shopping-cart"></i><c:out value="${sessionScope.headerTopCart }"></c:out></a></li>
 							</c:if>						
 						
 						<c:if test="${sessionScope.userLogin != null}">
 							<c:if test="${sessionScope.userPermission == 'ADMIN'}">
 								<li><a href="account"><i class="fa fa-user"></i><c:out value="${sessionScope.userLogin }"></c:out></a></li>
-								<li><a href="home"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-								<li><a href="login?logout=true"><i class="fa fa-lock"></i>Logout</a></li>
+								<li><a href="home"><i class="glyphicon glyphicon-home"></i><c:out value="${sessionScope.headerTopHome }"></c:out></a></li>
+								<li><a href="login?logout=true"><i class="fa fa-lock"></i><c:out value="${sessionScope.headerTopLogout}"></c:out></a></li>
 							</c:if>
 							<c:if test="${sessionScope.userPermission != 'ADMIN'}">
 								<li><a href="account"><i class="fa fa-user"></i><c:out value="${sessionScope.userLogin }"></c:out></a></li>
-								<li><a href="wishlist"><i class="fa fa-star"></i>Wishlist</a></li>
-								<li><a href="home"><i class="glyphicon glyphicon-home"></i>Home</a></li>
-								<li><a href="cart"><i class="fa fa-shopping-cart"></i>Cart</a></li>
-								<li><a href="login?logout=true"><i class="fa fa-lock"></i>Logout</a></li>
+								<li><a href="wishlist"><i class="fa fa-star"></i><c:out value="${sessionScope.headerTopWishlist }"></c:out></a></li>
+								<li><a href="home"><i class="glyphicon glyphicon-home"></i><c:out value="${sessionScope.headerTopHome }"></c:out></a></li>
+								<li><a href="cart"><i class="fa fa-shopping-cart"></i><c:out value="${sessionScope.headerTopCart }"></c:out></a></li>
+								<li><a href="login?logout=true"><i class="fa fa-lock"></i><c:out value="${sessionScope.headerTopLogout }"></c:out></a></li>
 							</c:if>
 						</c:if>
 					</ul>

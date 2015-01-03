@@ -8,6 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Photo;
 import com.epam.ryndych.database.service.PhotoService;
 
@@ -23,6 +24,7 @@ public class PrintPhotosByItemId extends SimpleTagSupport {
 	StringWriter sw = new StringWriter();
 
 	public void doTag() throws JspException, IOException {
+		Logger.LOGGER.info(this.getClass().getSimpleName());
 		ArrayList<Photo> photos = PhotoService.getPhotoGalery(itemId);
 		
 		if (photos != null) {

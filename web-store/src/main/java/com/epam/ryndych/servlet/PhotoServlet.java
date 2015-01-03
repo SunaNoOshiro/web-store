@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Item;
 import com.epam.ryndych.database.model.Photo;
 import com.epam.ryndych.database.service.ItemService;
@@ -31,6 +32,7 @@ public class PhotoServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		doPost(request, response);
 	}
 
@@ -38,6 +40,7 @@ public class PhotoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		String url = request.getParameter("url");
 		String description = request.getParameter("description");
 		String model = request.getParameter("model");
@@ -53,7 +56,7 @@ public class PhotoServlet extends HttpServlet {
 				request.getRequestDispatcher("/pages/admin/get_items.jsp").forward(request, response);
 			}
 			else{
-				System.out.println("Some of the Description parameters are empty");
+				Logger.LOGGER.info("Some of the Description parameters are empty");
 			}
 			
 		}
@@ -71,7 +74,7 @@ public class PhotoServlet extends HttpServlet {
 					boolean success = PhotoService.insertPhoto(photo);					
 				
 					if (success){						
-						System.out.println("Photo insert was success");
+						Logger.LOGGER.info("Photo insert was success");
 						Photo insertedPhoto = PhotoService.getPhotoByURL(photo.getUrl());
 					
 						if(insertedPhoto!=null){
@@ -80,24 +83,24 @@ public class PhotoServlet extends HttpServlet {
 								response.getWriter().write("Photo insert was success");
 							}
 							else{
-								System.out.println("Photo insert was not success");
+								Logger.LOGGER.info("Photo insert was not success");
 								response.getWriter().write("Photo insert was not success");
 							}
 						}
 						
 					}						
 					else{
-						System.out.println("Photo insert was not success");
+						Logger.LOGGER.info("Photo insert was not success");
 						response.getWriter().write("Photo insert was not success");
 					}
 						
 				}
 				else{
-					System.out.println("Item nt found");
+					Logger.LOGGER.info("Item nt found");
 				}
 			}
 			else{
-				System.out.println("Some of the Description parameters are empty");
+				Logger.LOGGER.info("Some of the Description parameters are empty");
 			}
 		}
 		else if(operation.equals("deletePhoto")){
@@ -105,20 +108,20 @@ public class PhotoServlet extends HttpServlet {
 				
 				boolean success = PhotoService.deletePhotoByURL(url);
 				if (success){
-					System.out.println("Description delete was success");
+					Logger.LOGGER.info("Description delete was success");
 					response.getWriter().write("Description delete was success");
 				}						
 				else{
-					System.out.println("Description delete was not success");
+					Logger.LOGGER.info("Description delete was not success");
 					response.getWriter().write("Description delete was not success");
 				}
 			}
 			else{
-				System.out.println("Some of the Description parameters are empty");
+				Logger.LOGGER.info("Some of the Description parameters are empty");
 			}
 		}
 		else{
-			System.out.println("none");
+			Logger.LOGGER.info("none");
 		}
 		
 	}

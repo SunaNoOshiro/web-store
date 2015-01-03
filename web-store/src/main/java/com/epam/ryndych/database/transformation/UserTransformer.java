@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.User;
 
 public class UserTransformer {
@@ -30,6 +31,7 @@ public class UserTransformer {
 				user.setPermission(rs.getString("permission"));	
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return user;
@@ -62,7 +64,7 @@ public class UserTransformer {
 				users.add(user);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return users;

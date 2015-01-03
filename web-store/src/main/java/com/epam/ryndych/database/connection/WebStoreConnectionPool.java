@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import com.epam.ryndych.database.logger.Logger;
+
 public class WebStoreConnectionPool {
 	private static WebStoreConnectionPool instance = null;
 	//private BoneCP connectionPool = null;
@@ -32,12 +34,12 @@ public class WebStoreConnectionPool {
 //			connection = connectionPool.getConnection();
 			
 			if (connection != null){
-				//System.out.println("Connection successful!");				
+				Logger.LOGGER.info("Connection successful!");				
 			}
 		} catch (ClassNotFoundException e) {
-			System.out.println("MySql Driver not found");
+			Logger.LOGGER.error("MySql Driver not found");
 		} catch (SQLException e) {
-			System.out.println("Can't connect to SQL DB");
+			Logger.LOGGER.error("Can't connect to SQL DB");
 		}
 	}
 

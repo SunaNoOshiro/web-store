@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Category;
 public class CategoryTransformer {
 	public static Category fromResultSetToCategory(ResultSet rs){
@@ -17,6 +18,7 @@ public class CategoryTransformer {
 				category.setSuperCategoty(rs.getString("super"));
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return category;
@@ -37,7 +39,7 @@ public class CategoryTransformer {
 				categories.add(category);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return categories;

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Category;
 import com.epam.ryndych.database.service.CategoryService;
 
@@ -29,6 +30,7 @@ public class CategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		doPost(request, response);
 	}
 
@@ -36,9 +38,12 @@ public class CategoryServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		String categoryName = request.getParameter("categoryName");
 		String categorySuperName = request.getParameter("categorySuper");
 		String operation = request.getParameter("operation");
+		
+		Logger.LOGGER.info(  operation);
 		if(operation.equals("getCategories")){
 			ArrayList<Category> categories = CategoryService.getAllCategories();
 			request.setAttribute("categories", categories);
@@ -52,16 +57,16 @@ public class CategoryServlet extends HttpServlet {
 				category.setSuperCategoty(categorySuper.getName());
 				boolean success = CategoryService.insertCategory(category);
 				if(success)
-					System.out.println("Category insert was success");
+					Logger.LOGGER.info("Category insert was success");
 				else
-					System.out.println("Category insert was not success");
+					Logger.LOGGER.info("Category insert was not success");
 			}
 			else{
-				System.out.println("Some of the Category parameters are empty");
+				Logger.LOGGER.info("Some of the Category parameters are empty");
 			}
 		}
 		else{
-			System.out.println("none");
+			Logger.LOGGER.error("none");
 		}
 		
 	}

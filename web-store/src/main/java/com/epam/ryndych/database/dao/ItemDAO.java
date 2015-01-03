@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.epam.ryndych.database.connection.WebStoreConnectionPool;
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Item;
 import com.epam.ryndych.database.service.DescriptionService;
 import com.epam.ryndych.database.transformation.ItemTransformer;
@@ -45,7 +46,7 @@ public class ItemDAO {
 
 			}
 		} catch (SQLException e) {
-
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return item;
 	}
@@ -66,7 +67,7 @@ public class ItemDAO {
 
 			}
 		} catch (SQLException e) {
-
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return item;
 	}
@@ -80,7 +81,7 @@ public class ItemDAO {
 				items = ItemTransformer.fromResultSetToItemsArray(rs);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return items;
 	}
@@ -97,7 +98,7 @@ public class ItemDAO {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return models;
 	}
@@ -114,7 +115,7 @@ public class ItemDAO {
 				}
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return models;
 	}
@@ -138,10 +139,11 @@ public class ItemDAO {
 				return false;
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				Logger.LOGGER.error(e1.getMessage());
 			}
 			return false;
 		}
@@ -156,6 +158,8 @@ public class ItemDAO {
 		PreparedStatement pStatement = wbConnection
 				.prepareStatement(UPDATE_ITEM_BY_ID);
 		try {
+			wbConnection.getConnection().setAutoCommit(false);
+			
 			pStatement.setInt(1, newItem.getCategory().getId());
 			pStatement.setString(2, newItem.getManufacturer());
 			pStatement.setFloat(3, newItem.getPrice());
@@ -163,8 +167,11 @@ public class ItemDAO {
 			pStatement.setInt(5, newItem.getWarranty());
 			pStatement.setInt(6, newItem.getId());
 
-			pStatement.executeUpdate();
+			if(pStatement.executeUpdate()>0){
+				wbConnection.getConnection().commit();
+			};
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 		return true;
@@ -193,11 +200,11 @@ public class ItemDAO {
 			}
 				
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 			} catch (SQLException e1) {
-				e1.printStackTrace();
+				Logger.LOGGER.error(e1.getMessage());
 			}
 			return false;
 		}

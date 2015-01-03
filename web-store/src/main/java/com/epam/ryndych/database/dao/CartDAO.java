@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.epam.ryndych.database.connection.WebStoreConnectionPool;
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Basket;
 import com.epam.ryndych.database.transformation.BasketTransformer;
 
@@ -39,10 +40,11 @@ public class CartDAO {
 			}
 			
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 			} catch (SQLException e1) {
-				System.out.println(e1.getMessage());
+				Logger.LOGGER.error(e1.getMessage());
 			}
 		}
 		return basket;
@@ -62,10 +64,12 @@ public class CartDAO {
 				wbConnection.getConnection().commit();
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 				return false;
 			} catch (SQLException e1) {
+				Logger.LOGGER.error(e1.getMessage());
 				return false;
 			} 
 		}
@@ -88,10 +92,12 @@ public class CartDAO {
 				wbConnection.getConnection().commit();
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 				return false;
 			} catch (SQLException e1) {
+				Logger.LOGGER.error(e1.getMessage());
 				return false;
 			} 
 		}
@@ -113,11 +119,12 @@ public class CartDAO {
 				wbConnection.getConnection().commit();
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 				return false;
 			} catch (SQLException e1) {
+				Logger.LOGGER.error(e1.getMessage());
 				return false;
 			} 
 		}

@@ -1,6 +1,6 @@
 <script type="text/javascript">
 	function insertToCart(id,userId,qty){
-		alert(id+""+userId);
+		//alert(id+""+userId);
 		$.get("cart?operation=insertItem"+
 				"&userId="+userId+
 				"&itemId="+id+

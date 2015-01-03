@@ -7,11 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.epam.ryndych.database.connection.WebStoreConnectionPool;
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Category;
 import com.epam.ryndych.database.transformation.CategoryTransformer;
 
 public class CategoryDAO {
-	public static final String SELECT_CATEGORY = "SELECT * FROM item_category WHERE id = '?'";
+	public static final String SELECT_CATEGORY = "SELECT * FROM item_category WHERE id = ?";
 	public static final String SELECT_CATEGORY_BY_NAME = "SELECT * FROM item_category WHERE name LIKE ?";
 	public static final String SELECT_CATEGORIES_BY_SUPER = "SELECT * FROM item_category WHERE super LIKE ?";
 	public static final String SELECT_ALL_CATEGORIES = "SELECT * FROM item_category";
@@ -47,10 +48,11 @@ public class CategoryDAO {
 			}
 			
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 			} catch (SQLException e1) {
-				System.out.println(e1.getMessage());
+				Logger.LOGGER.error(e1.getMessage());
 			}
 		}
 		return category;
@@ -71,11 +73,11 @@ public class CategoryDAO {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 			} catch (SQLException e1) {
-				System.out.println(e1.getMessage());
+				Logger.LOGGER.error(e1.getMessage());
 			}
 		}
 		return category;
@@ -96,11 +98,11 @@ public static ArrayList<Category> getCategoriesBySuper(String superCategory) {
 			}
 			
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 			} catch (SQLException e1) {
-				System.out.println(e1.getMessage());
+				Logger.LOGGER.error(e1.getMessage());;
 			}
 		}
 		return categories;
@@ -118,10 +120,11 @@ public static ArrayList<Category> getCategoriesBySuper(String superCategory) {
 				wbConnection.getConnection().commit();
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 			} catch (SQLException e1) {
-				System.out.println(e1.getMessage());
+				Logger.LOGGER.error(e1.getMessage());
 			}
 		}
 		return categories;
@@ -138,10 +141,12 @@ public static ArrayList<Category> getCategoriesBySuper(String superCategory) {
 			pStatement.executeUpdate();
 			wbConnection.getConnection().commit();
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 				return false;
 			} catch (SQLException e1) {
+				Logger.LOGGER.error(e1.getMessage());
 				return false;
 			} 
 		}
@@ -163,10 +168,12 @@ public static ArrayList<Category> getCategoriesBySuper(String superCategory) {
 			pStatement.executeUpdate();
 			wbConnection.getConnection().commit();
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 				return false;
 			} catch (SQLException e1) {
+				Logger.LOGGER.error(e1.getMessage());
 				return false;
 			} 
 		}
@@ -186,10 +193,12 @@ public static ArrayList<Category> getCategoriesBySuper(String superCategory) {
 			pStatement.executeUpdate();
 			wbConnection.getConnection().commit();
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			try {
 				wbConnection.getConnection().rollback();
 				return false;
 			} catch (SQLException e1) {
+				Logger.LOGGER.error(e1.getMessage());
 				return false;
 			} 
 		}

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.epam.ryndych.database.connection.WebStoreConnectionPool;
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.User;
 import com.epam.ryndych.database.transformation.UserTransformer;
 
@@ -51,7 +52,7 @@ public class UserDAO {
 
 			}
 		} catch (SQLException e) {
-
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return user;
 	}
@@ -69,7 +70,7 @@ public class UserDAO {
 				user = UserTransformer.fromResultSetToUser(rs);
 			}
 		} catch (SQLException e) {
-			
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return user;
 	}
@@ -96,7 +97,7 @@ public class UserDAO {
 				users = UserTransformer.fromResultSetToUsersArray(rs);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 		}
 		return users;
 	}
@@ -118,6 +119,7 @@ public class UserDAO {
 			}
 			
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 		return true;
@@ -132,6 +134,7 @@ public class UserDAO {
 			pStatement.setString(1, value);
 			pStatement.executeUpdate();
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 		return true;
@@ -171,6 +174,7 @@ public class UserDAO {
 			
 			pStatement.executeUpdate();
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 		return true;		
@@ -204,7 +208,7 @@ public class UserDAO {
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 			return false;
 		}
 		return true;		

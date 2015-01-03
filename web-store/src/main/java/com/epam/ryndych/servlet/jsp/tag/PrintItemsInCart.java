@@ -9,6 +9,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Basket;
 import com.epam.ryndych.database.model.Item;
 import com.epam.ryndych.database.model.Photo;
@@ -27,7 +28,7 @@ public class PrintItemsInCart extends SimpleTagSupport {
 	}
 	
 	public void doTag() throws JspException, IOException {
-	
+		Logger.LOGGER.info(this.getClass().getSimpleName());
 		cart = CartService.getBasket(userId);
 		if (cart != null) {
 			StringBuilder sb = new StringBuilder();			

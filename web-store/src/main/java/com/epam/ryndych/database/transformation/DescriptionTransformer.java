@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Description;
 
 public class DescriptionTransformer {
@@ -18,6 +19,7 @@ public class DescriptionTransformer {
 				description.setValue(rs.getString("description_value"));
 			}
 		} catch (SQLException e) {
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return description;
@@ -38,7 +40,7 @@ public class DescriptionTransformer {
 				descriptions.add(description);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.LOGGER.error(e.getMessage());
 			return null;
 		}		
 		return descriptions;

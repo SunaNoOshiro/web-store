@@ -11,6 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
 /**
  * Servlet Filter implementation class LoginFilter
  */
@@ -35,8 +36,7 @@ public class LoginFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+		
 		HttpServletRequest req = (HttpServletRequest) request;
 
 		String uri = req.getRequestURI();
@@ -52,7 +52,7 @@ public class LoginFilter implements Filter {
 			} 
 			//anonim
 			else if (session.getAttribute("userPermission") == null) {
-				if (uri.endsWith("login") || uri.endsWith("home")  || uri.endsWith("/") 
+				if (uri.endsWith("cart") || uri.endsWith("login") || uri.endsWith("home")  || uri.endsWith("/") 
 						|| uri.endsWith("product-details")	|| uri.endsWith("user") || uri.endsWith("user")) {
 					chain.doFilter(request, response);
 				} else {
@@ -61,7 +61,7 @@ public class LoginFilter implements Filter {
 			} 
 			//admin
 			else if (session.getAttribute("userPermission").equals("ADMIN")) {
-				if ((uri.endsWith("account") || uri.endsWith("userlist") || uri.endsWith("user")|| uri.endsWith("login") 
+				if ((uri.endsWith("cart") ||uri.endsWith("account") || uri.endsWith("userlist") || uri.endsWith("user")|| uri.endsWith("login") 
 						|| uri.endsWith("product-details") || uri.endsWith("home") || uri.endsWith("/") || uri.endsWith("admin/category")
 						||  uri.endsWith("/admin/item") ||  uri.endsWith("/admin/description") ||uri.endsWith("/admin/photo"))) {
 					chain.doFilter(request, response);

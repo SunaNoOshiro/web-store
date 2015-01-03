@@ -36,6 +36,11 @@
 			<required>true</required>	
 			<rtexprvalue>true</rtexprvalue>		
 		</attribute>	
+		<attribute>
+			<name>pageId</name>
+			<required>true</required>	
+			<rtexprvalue>true</rtexprvalue>		
+		</attribute>
 	</tag>
 	<tag>
 		<name>printProductDetails</name>

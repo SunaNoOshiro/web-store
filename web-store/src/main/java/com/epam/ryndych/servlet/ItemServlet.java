@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Category;
 import com.epam.ryndych.database.model.Item;
 import com.epam.ryndych.database.service.CategoryService;
@@ -31,6 +32,7 @@ public class ItemServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		doPost(request, response);
 	}
 
@@ -38,6 +40,7 @@ public class ItemServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Logger.LOGGER.info(request.getRequestURI());
 		String model = request.getParameter("model");
 		String manufacturer = request.getParameter("manufacturer");
 		float price = 0;
@@ -45,15 +48,10 @@ public class ItemServlet extends HttpServlet {
 		int itemId = 0;
 		try {
 			price = Float.parseFloat(request.getParameter("price"));
-		} catch (Exception e) {
-		}
-		try {
 			warranty = Integer.parseInt(request.getParameter("warranty"));
-		} catch (Exception e) {
-		}
-		try {
 			itemId = Integer.parseInt(request.getParameter("itemId"));
 		} catch (Exception e) {
+			Logger.LOGGER.error(e.getMessage());
 		}
 		String categoryName = request.getParameter("category");
 
@@ -90,31 +88,31 @@ public class ItemServlet extends HttpServlet {
 				
 				boolean success = ItemService.insertItem(item);
 				if(success){
-					System.out.println("Item insert was success");
+					Logger.LOGGER.info("Item insert was success");
 					response.getWriter().write("Item insert was success");
 				}
 				else{
-					System.out.println("Item insert was not success");
+					Logger.LOGGER.info("Item insert was not success");
 					response.getWriter().write("Item insert was not success");
 				}
 			}
 			else{
-				System.out.println("Some of the Item parameters are empty");
+				Logger.LOGGER.info("Some of the Item parameters are empty");
 			}
 		}
 		else if(operation.equals("deleteItem")){
 				boolean success = ItemService.deleteItemById(itemId);
 				if (success){
-					System.out.println("Item delete was success");
+					Logger.LOGGER.info("Item delete was success");
 					response.getWriter().write("Item delete was success");
 				}						
 				else{
-					System.out.println("Item delete was not success");
+					Logger.LOGGER.info("Item delete was not success");
 					response.getWriter().write("Item delete was not success");
 				}
 		}
 		else{
-			System.out.println("none");
+			Logger.LOGGER.info("none");
 		}
 		
 	}

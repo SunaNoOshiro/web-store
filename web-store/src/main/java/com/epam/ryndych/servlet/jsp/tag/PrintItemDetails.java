@@ -8,6 +8,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import com.epam.ryndych.database.logger.Logger;
 import com.epam.ryndych.database.model.Description;
 import com.epam.ryndych.database.model.Item;
 import com.epam.ryndych.database.model.Photo;
@@ -27,6 +28,7 @@ public class PrintItemDetails extends SimpleTagSupport {
 	StringWriter sw = new StringWriter();
 
 	public void doTag() throws JspException, IOException {
+		Logger.LOGGER.info(this.getClass().getSimpleName());
 		ArrayList<Photo> photos = PhotoService.getPhotoGalery(itemId);
 		Item item = ItemService.getItemById(itemId);
 		if (item!=null) {
@@ -37,9 +39,16 @@ public class PrintItemDetails extends SimpleTagSupport {
 					sb.append(" <div class=\"product-details\"><!--product-details-->");
 					sb.append("<div class=\"col-sm-5\">");
 						sb.append("<div class=\"view-product\">");
-						sb.append("<img src=\""
-								+ photos.get(0).getUrl()
-								+ "\" alt=\"\" />");
+						try{
+							sb.append("<img src=\""
+									+ photos.get(0).getUrl()
+									+ "\" alt=\"\" />");
+						}
+						catch(Exception e){
+							sb.append("<img src=\""
+									+ "\" alt=\"\" />");
+						}
+						
 						sb.append("<h3>ZOOM</h3>");
 						sb.append("</div>");
 					
